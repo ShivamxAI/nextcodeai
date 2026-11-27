@@ -28,3 +28,9 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Website architecture
+- Keep the website at the index route with in-page anchors because the brief explicitly requests one scroll-driven page.
+- Keep editable website copy in `src/data/content.ts`, report rows in `results.json`, and roadmap entries in `roadmap.json` so claims remain data-driven.
+- Keep demos browser-only and simulated; no backend or provider requests are needed for this informational website.
+- Lazy-load the Recharts report explorer so the initial editor experience stays lightweight.

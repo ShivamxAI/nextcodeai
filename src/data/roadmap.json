@@ -1,0 +1,56 @@
+[
+  {
+    "id": "retrieval",
+    "title": "Repository retrieval",
+    "status": "Planned",
+    "description": "Start with BM25 retrieval, then explore CodeBERT embeddings to bring relevant repository context into suggestions."
+  },
+  {
+    "id": "benchmark",
+    "title": "Codebase-size benchmark",
+    "status": "Planned",
+    "description": "Measure how suggestion quality and latency change as a repository grows."
+  },
+  {
+    "id": "trimming",
+    "title": "Block-aware trimming",
+    "status": "Planned",
+    "description": "Use tree-sitter to trim suggestions at meaningful syntax boundaries."
+  },
+  {
+    "id": "language",
+    "title": "Per-language settings",
+    "status": "Planned",
+    "description": "Tune completion behavior independently for each programming language."
+  },
+  {
+    "id": "spend",
+    "title": "Cloud request & spend controls",
+    "status": "Planned",
+    "description": "Explore request caps and spend controls for cloud completion."
+  },
+  {
+    "id": "lora",
+    "title": "LoRA fine-tuning",
+    "status": "Planned",
+    "description": "Explore lightweight fine-tuning as future research. No model training has been done."
+  },
+  {
+    "id": "hosted",
+    "title": "Hosted backend with sign-in",
+    "status": "Planned",
+    "description": "Explore a managed service with sign-in that does not require a user-provided API key."
+  },
+  {
+    "id": "gpu",
+    "title": "Hosted GPU backend",
+    "status": "Planned",
+    "description": "Explore hosted GPU inference to reduce local CPU latency."
+  },
+  {
+    "id": "jetbrains",
+    "title": "JetBrains support",
+    "status": "Planned",
+    "description": "Bring the same explicit control over code sharing to JetBrains editors."
+  }
+]
