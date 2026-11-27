@@ -182,19 +182,32 @@ export const content = {
   report: {
     eyebrow: "07 / THE CODESEARCHNET REPORT",
     title: "Less hype. More evidence.",
-    description: "Same functions. Same missing code. An honest look at what comes back.",
+    description:
+      "Draft results from November 2026. Same functions. Same missing code. An honest look at what comes back.",
     method:
-      "We take real functions from the CodeSearchNet test split, hide a piece, and ask each provider to fill it in. Every provider gets the same tasks with a fixed seed, across Python, Java, JavaScript, Go, Ruby, and PHP.",
+      "We take real functions from the CodeSearchNet test split, hide a piece, and ask each provider to fill it in. Each language has 50 line tasks and 50 block tasks, selected in a fixed random order (seed 42). Every provider gets the same tasks across Python, Java, JavaScript, Go, Ruby, and PHP.",
     line: "LINE TASK",
     lineDescription: "Complete the rest of one line.",
     block: "BLOCK TASK",
     blockDescription: "Fill in 2–4 missing lines.",
     metrics:
-      "Exact match with 95% confidence intervals · First-line match · Edit similarity · Empty rate · Latency p50 & p95",
-    emptyTitle: "Results coming soon",
-    emptyDescription:
-      "No numbers until there are real numbers. The explorer will appear here when benchmark results are available.",
-    emptyBadge: "AWAITING BENCHMARK DATA",
+      "Exact match with 95% Wilson confidence intervals · First-line match · Edit similarity · Empty rate · Latency p50 & p95",
+    statusBadge: "DRAFT · NOVEMBER 2026",
+    status:
+      "Local: qwen2.5-coder:1.5b via Ollama on a CPU-only Windows laptop; all six languages complete. Cloud: gemini-3.5-flash-lite through the Gemini API; five languages complete, PHP rerun pending.",
+    comparisonTitle: "Local vs Gemini · five shared languages",
+    comparisonDescription:
+      "Go, Java, JavaScript, Python, and Ruby. Exact match uses pooled counts; edit similarity is the plain average of the five per-language rows. These comparisons are derived from the report rows, not direct script output.",
+    geminiVsLocal: "Gemini vs local · five-language average",
+    comparisonNote:
+      "For line tasks, the approximate 95% intervals are 33–45% for Gemini and 24–36% for local. They overlap slightly: Gemini is probably better, but the difference is not proven.",
+    phpNote:
+      "Gemini PHP is excluded from comparisons: only 5 of 50 line requests and 3 of 50 block requests succeeded (45 and 47 errors). Those rows are not usable yet.",
+    aggregateNote:
+      "“All” rows are the script’s reported totals. Gemini’s All rows include its few PHP successes and will change after the PHP rerun. Local Ruby p95 values of 94,137 ms (line) and 19,482 ms (block) reflect an apparent stall; medians are unaffected.",
+    emptyTitle: "No report data loaded",
+    emptyDescription: "The report explorer needs rows from the evaluation results file.",
+    emptyBadge: "LOADING REPORT DATA",
     provider: "Provider",
     task: "Task type",
     language: "Language",
@@ -211,15 +224,19 @@ export const content = {
       },
       {
         title: "Small samples mean wide intervals.",
-        text: "The 95% confidence interval shows uncertainty, not a guarantee. Early results use small samples.",
+        text: "Each cell targets 50 tasks, so only large differences are reliable. The 95% confidence interval shows uncertainty, not a guarantee; most language differences fall within overlapping intervals.",
       },
       {
         title: "Local and cloud latency are different stories.",
-        text: "Local CPU latency is far above cloud latency. Compare p50 and p95 with the hardware and provider in mind.",
+        text: "Local latency reflects a CPU-only laptop, not the model’s full potential. Cloud latency includes automatic retry waits and varies with server load, so compare p50 and p95 with that context in mind.",
+      },
+      {
+        title: "Block results have an output-limit constraint.",
+        text: "The local model is capped at 48 tokens for block tasks, which can cut longer blocks short. Gemini’s block response limit is 400 tokens.",
       },
       {
         title: "The dataset has history.",
-        text: "CodeSearchNet is old, public GitHub code under various licences, including some Python 2. This evaluation uses an unofficial parquet re-upload of CodeSearchNet.",
+        text: "CodeSearchNet is public GitHub code from 2019 under various licences, including older code such as Python 2. This evaluation uses the unofficial claudios/code_search_net parquet re-upload; raw samples are not redistributed.",
       },
     ],
   },
